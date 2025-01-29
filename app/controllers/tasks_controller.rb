@@ -3,7 +3,9 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    tasks = Task.all.order(expiration_date: :asc).group_by(&:status)
+    @in_progress_tasks = tasks.fetch("in_progress", [])
+    @completed_tasks = tasks.fetch("completed", [])
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -65,6 +67,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.expect(task: [ :name, :description, :expiration_date ])
+      params.expect(task: [ :name, :description, :expiration_date, :status ])
     end
 end

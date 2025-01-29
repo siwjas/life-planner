@@ -1,25 +1,29 @@
-<% content_for :title, "Tasks" %>
-
 <div class="w-full">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+    <p class="py-2 px-3 bg-green-900 mb-5 text-green-300 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
+  
+  <% content_for :title, "Tasks" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Tasks</h1>
-    <%= link_to "New task", new_task_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <h1 class="font-extrabold text-4xl text-gray-100">Tasks</h1>
+    <%= link_to "New task", new_task_path, class: "rounded-md px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white block font-medium" %>
   </div>
 
-  <div id="tasks" class="min-w-full">
-    <% if @tasks.any? %>
-      <% @tasks.each do |task| %>
-        <%= render task %>
-        <p>
-          <%= link_to "Show this task", task, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-        </p>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No tasks found.</p>
-    <% end %>
-  </div>
+  <% if @in_progress_tasks.empty? && @completed_tasks.empty? %>
+    <div class="bg-gray-800 shadow rounded-lg px-8 py-5 my-4">
+      <p class="text-4xl font-extrabold my-4 text-gray-100">No Tasks!</p>
+      <p class="text-lg text-gray-300 font-medium">Create a new task. Or enjoy your new-found free time, yay!</p>
+    </div>
+  <% else %>
+    <h3 class="text-4xl font-extrabold my-4 text-gray-100">In Progress</h3>
+    <div id="tasks" class="min-w-full">
+      <%= render partial: "tasks/task", collection: @in_progress_tasks, cached: true %>
+    </div>
+
+    <h3 class="text-4xl font-extrabold my-4 text-gray-100">Completed</h3>
+    <div id="tasks" class="min-w-full">
+      <%= render partial: "tasks/task", collection: @completed_tasks, cached: true %>
+    </div>
+  <% end %>
 </div>

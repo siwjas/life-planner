@@ -23,9 +23,33 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+  <body class="h-full w-full bg-gray-900">
+    <main class="min-h-full min-w-full flex-col">
+      <nav class="bg-gray-800 shadow-sm min-w-full">
+        <div class="mx-auto max-w-4xl">
+          <div class="flex h-16 justify-between">
+            <div class="flex">
+              <div class="flex flex-shrink-0 items-center">
+                <img class="block h-8 w-auto lg:hidden" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+                <img class="hidden h-8 w-auto lg:block" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+              </div>
+              <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                <%= link_to "Tasks", tasks_path, 
+                  class: "text-gray-100 hover:text-stone-2 inline-flex items-center transition border-b-2 border-emerald-500 
+                  hover:border-indigo-500  duration-300 ease-in-out px-1 pt-1 text-sm font-medium" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="py-10">
+        <main>
+          <div class="mx-auto max-w-4xl">
+            <%= yield %>
+          </div>
+        </main>
+      </div>
     </main>
   </body>
 </html>

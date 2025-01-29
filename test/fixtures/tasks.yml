@@ -9,3 +9,9 @@ two:
   name: MyString
   description: MyString
   expiration_date: 2025-01-29
+
+three:
+  name: MyString
+  description: MyString
+  expiration_date: 2025-01-29
+  status: completed

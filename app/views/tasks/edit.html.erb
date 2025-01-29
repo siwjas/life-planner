@@ -1,10 +1,7 @@
-<% content_for :title, "Editing task" %>
-
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing task</h1>
-
+<h1 class="font-extrabold text-4xl my-4 text-gray-100">Editing task</h1>
+<div class="bg-gray-800 rounded-lg shadow p-5 md:w-2/3 w-full">
   <%= render "form", task: @task %>
 
-  <%= link_to "Show this task", @task, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to tasks", tasks_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <%= link_to "Show this task", @task, class: "ml-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
+  <%= link_to "Back to tasks", tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
 </div>

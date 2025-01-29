@@ -1,14 +1,30 @@
-<div id="<%= dom_id task %>">
+<div id="<%= dom_id task %>" class="bg-gray-800 shadow rounded-lg px-5 py-3 my-4">
+
+  <div class="pb-3 min-w-full flex justify-between border-b-2 border-stone-700">
+    <div class="text-gray-300 block">
+      <strong class="text-lg font-bold mb-1 text-gray-100">Name:</strong>
+      <%= task.name %>
+    </div>
+
+    <div class="text-gray-300 block">
+      <strong class="text-lg font-bold mb-1 text-gray-100">Expiration date:</strong>
+      <%= l task.expiration_date %>
+    </div>
+  </div>
+
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= task.name %>
+    <div class="text-gray-300">
+      <strong class="text-lg block font-bold mb-1 text-gray-100">Description:</strong>
+      <span class=" <%= task.completed? ? 'line-through': '' %>">
+        <%= task.description %>
+      </span>
+    </div>
   </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= task.description %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Expiration date:</strong>
-    <%= task.expiration_date %>
+
+  <p>
+    <%= link_to "Show this task", task, 
+      class: "ml-2 mt-3 rounded-lg py-3 px-5 
+      bg-gray-700 text-gray-100 inline-block 
+      font-medium hover:bg-stone-600" unless action_name == 'show' %>
   </p>
 </div>
