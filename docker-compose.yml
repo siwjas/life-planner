@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: pg_container
+    image: postgres
+    restart: always
+    volumes:
+     - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+  pgadmin:
+    container_name: pgadm4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: wjas@outlook.com
+      PGADMIN_DEFAULT_PASSWORD: argus
+    ports:
+      - "8080:80"
+volumes:
+  pgdata:
