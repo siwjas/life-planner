@@ -6,10 +6,23 @@
       <%= task.name %>
     </div>
 
-    <div class="text-gray-300 block">
-      <strong class="text-lg font-bold mb-1 text-gray-100">Expiration date:</strong>
-      <%= l task.expiration_date %>
-    </div>
+    <% unless task.completed? %>
+      <div class="text-gray-300 block">
+        <% if task.expired? %>
+          <span class="text-rose-500 animate-pulse">
+            <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+          </span>
+          <span class="<%= task.formated_deadline %>">
+            <%= task.deadline %>
+          </span>
+        <% else %>
+          <strong class="text-lg font-bold mb-1 text-gray-100">Deadline: </strong>
+          <span class="<%= task.formated_deadline %>">
+            <%= task.deadline %>
+          </span>
+        <% end %>  
+      </div>
+    <% end %>
   </div>
 
   <p class="my-5">
@@ -25,6 +38,6 @@
     <%= link_to "Show this task", task, 
       class: "ml-2 mt-3 rounded-lg py-3 px-5 
       bg-gray-700 text-gray-100 inline-block 
-      font-medium hover:bg-stone-600" unless action_name == 'show' %>
+      font-medium hover:bg-gray-600" unless action_name == 'show' %>
   </p>
 </div>

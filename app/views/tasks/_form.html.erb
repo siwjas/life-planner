@@ -22,9 +22,9 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :status, class: "text-gray-100 block text-sm/6 font-medium" %>
-    <%= form.select :status, Task::STATUSES, 
-      class: "block shadow rounded-md border border-gray-600 bg-gray-700 text-gray-100 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :status, class: "text-gray-100" %>
+      <%= form.select :status, Task::STATUSES,{ }, 
+        { class: 'block shadow rounded-md border border-gray-600 bg-gray-700 text-gray-100 outline-none px-3 py-2 mt-2 w-full' } %>
   </div>
 
   <div class="my-5">
