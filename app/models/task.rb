@@ -8,25 +8,21 @@ class Task < ApplicationRecord
   
   STATUSES = %w[in_progress completed archived].freeze
 
-  def formated_deadline
-    case deadline
-    when 'No deadline.', 'Today'  then 'text-gray-300'
-    when 'Expired'                then 'text-rose-500 animate-pulse'
-    else 'text-gray-300'
-    end
-  end
-
   def completed?
     status == 'completed'
   end
 
-  def deadline    
-    return 'No deadline.' if expiration_date.nil?
+  def archived?
+    status == 'archived'
+  end
 
-    if expiration_date == Date.today 
+  def deadline    
+    return 'No deadline' if expiration_date.nil?
+
+    if expiration_date == Date.today
       'Today'
     else
-      expiration_date.past? ? 'Expired!' : distance_of_time_in_words(Date.today, expiration_date)
+      expired? ? 'Expired' : distance_of_time_in_words(Date.today, expiration_date)
     end
   end
 

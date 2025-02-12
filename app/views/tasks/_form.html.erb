@@ -23,12 +23,16 @@
 
   <div class="my-5">
     <%= form.label :status, class: "text-gray-100" %>
-      <%= form.select :status, Task::STATUSES,{ }, 
-        { class: 'bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' } %>
+      <%= form.select :status, Task::STATUSES,{}, 
+        { class: 'bg-gray-50 border border-gray-300 text-gray-900 
+        mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+        block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white 
+        dark:focus:ring-blue-500 dark:focus:border-blue-500' } %>
   </div>
 
   <div class="my-5">
-    <%= form.label :expiration_date, class: "text-gray-100" %>
+    <%= form.label "Deadline", for: "task_expiration_date", class: "text-gray-100" %>
     <%= form.date_field :expiration_date, class: "block shadow rounded-md border border-gray-600 bg-gray-700 text-gray-100 outline-none px-3 py-2 mt-2 w-full focus:border-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50" %>
   </div>  
   

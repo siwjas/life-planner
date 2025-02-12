@@ -5,30 +5,19 @@
       <strong class="text-lg font-bold mb-1 text-gray-100">Name:</strong>
       <%= task.name %>
     </div>
-
-    <% unless task.completed? %>
-      <div class="text-gray-300 block">
-        <% if task.expired? %>
-          <span class="text-rose-500 animate-pulse">
-            <i class="fa-solid fa-circle-exclamation fa-lg"></i>
-          </span>
-          <span class="<%= task.formated_deadline %>">
-            <%= task.deadline %>
-          </span>
-        <% else %>
-          <strong class="text-lg font-bold mb-1 text-gray-100">Deadline: </strong>
-          <span class="<%= task.formated_deadline %>">
-            <%= task.deadline %>
-          </span>
-        <% end %>  
-      </div>
-    <% end %>
+    
+    <div class="text-gray-300 block <%= 'hidden' if task.completed? || task.archived? %>">
+        <%= label_task(task) %>
+        <span class="<%= 'text-rose-600' if task.expired? %>">
+          <%= task.deadline %>
+        </span>      
+    </div>
   </div>
 
   <p class="my-5">
     <div class="text-gray-300">
       <strong class="text-lg block font-bold mb-1 text-gray-100">Description:</strong>
-      <span class=" <%= task.completed? ? 'line-through': '' %>">
+      <span class=" <%='line-through' if task.completed? %>">
         <%= task.description %>
       </span>
     </div>
@@ -36,7 +25,8 @@
 
   <p>
     <%= link_to "Show this task", task, 
-      class: "ml-2 mt-3 rounded-lg py-3 px-5 
+      class: "transition duration-300 ease-in-out 
+      ml-2 mt-3 rounded-lg py-3 px-5 
       bg-gray-700 text-gray-100 inline-block 
       font-medium hover:bg-gray-600" unless action_name == 'show' %>
   </p>

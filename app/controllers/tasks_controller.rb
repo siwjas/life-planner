@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
+  allow_unauthenticated_access only: %i[ index ]
   before_action :set_task, only: %i[ show edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
     tasks = Task.all.order(expiration_date: :asc).group_by(&:status)
-    @in_progress_tasks = tasks.fetch("in_progress", [])
-    @completed_tasks = tasks.fetch("completed", [])
+    @in_progress_tasks  = tasks.fetch("in_progress", [])
+    @completed_tasks    = tasks.fetch("completed", [])
+    @archived_tasks     = tasks.fetch("archived", [])
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -27,7 +29,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: "Task was successfully created." }
+        format.html { redirect_to tasks_path, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
