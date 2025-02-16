@@ -1,33 +1,41 @@
-<div id="<%= dom_id task %>" class="bg-gray-800 shadow rounded-lg px-5 py-3 my-4">
+<div id="<%= dom_id task %>" class="bg-gray-100/30 border border-1 border-gray-300 dark:bg-gray-800 shadow-md rounded-lg px-5 py-3 my-4">
 
-  <div class="pb-3 min-w-full flex justify-between border-b-2 border-stone-700">
-    <div class="text-gray-300 block">
-      <strong class="text-lg font-bold mb-1 text-gray-100">Name:</strong>
-      <%= task.name %>
+  <div class="pb-3 w-full flex justify-between border-b-2 border-stone-300">
+    <div class="group space-x-2 flex flex-1">
+      <span class="mb-1 text-emerald-500 <%= 'text-gray-500 line-through' if task.completed? %>
+          group-hover:text-emerald-600">
+        <%= lucide_icon('calendar-clock') %>
+      </span>
+
+      <%= link_to task, class: "text-lg font-bold mb-1 text-emerald-600 
+          group-hover:text-emerald-400 #{ 'text-gray-500 line-through' if task.completed? }" do %>
+        <strong> <%= task.name %> </strong>  
+      <% end %>    
     </div>
     
-    <div class="text-gray-300 block <%= 'hidden' if task.completed? || task.archived? %>">
-        <%= label_task(task) %>
-        <span class="<%= 'text-rose-600' if task.expired? %>">
+    <div class="text-gray-700 gap-2 <%= (task.completed? || task.archived?) ? 'hidden' : 'flex' %>">
+      <% if task.expired? %>
+        <span class='text-rose-500 animate-pulse'>
+          <%= lucide_icon('circle-alert') %>
+        </span>
+        <strong class="text-rose-500"><%= task.deadline %></strong>        
+      <% else %>
+        <strong class="flex gap-2 <%= task.deadline == 'Today' ? 'text-amber-500' : 'text-emerald-600' %>">
+          <%= lucide_icon('alarm-clock') %>
           <%= task.deadline %>
-        </span>      
+        </strong> 
+      <% end %>   
     </div>
   </div>
 
   <p class="my-5">
-    <div class="text-gray-300">
-      <strong class="text-lg block font-bold mb-1 text-gray-100">Description:</strong>
+    <div class="text-gray-700">
+      <strong class="text-lg block font-bold mb-1">Description:</strong>
       <span class=" <%='line-through' if task.completed? %>">
         <%= task.description %>
       </span>
     </div>
   </p>
-
-  <p>
-    <%= link_to "Show this task", task, 
-      class: "transition duration-300 ease-in-out 
-      ml-2 mt-3 rounded-lg py-3 px-5 
-      bg-gray-700 text-gray-100 inline-block 
-      font-medium hover:bg-gray-600" unless action_name == 'show' %>
-  </p>
 </div>
+
+

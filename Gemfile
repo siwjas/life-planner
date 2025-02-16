@@ -15,13 +15,11 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails"
+gem "tailwindcss-rails", "~> 3.3"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
 gem 'dotiw'
-
-gem 'css-zero', '~> 1.0', '>= 1.0.6'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem "bcrypt", "~> 3.1.7"
@@ -67,3 +65,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "lucide-rails", "~> 0.5.1"

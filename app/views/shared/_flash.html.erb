@@ -1,0 +1,21 @@
+<% flash.each do |key, value| %>
+  <div data-controller="flash" 
+        class="w-full shadow-md mx-4 md:mx-auto lg:max-w-5xl flex justify-between p-3 rounded-md <%= flash_style(key) %> gap-2" role="alert">
+
+    <div aria-hidden="true" class="flex items-start flex-none">
+      <%= lucide_icon('circle-check') %> 
+    </div>
+
+    <div class="flex flex-col items-start flex-1">
+      <h5 class="font-medium leading-none mbe-1">hey!</h5>
+      <p id="notice">    
+        <%= value %>                   
+      </p>
+    </div>
+          
+    <button data-action="flash#dismiss" type="button" class="flex items-center hover:text-rose-500">
+      <%= lucide_icon('x') %>
+    </button>
+  </div>
+<% end %>
+

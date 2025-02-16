@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light" class="min-h-screen">
   <head>
     <title><%= content_for(:title) || "Life Planner" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -24,49 +24,18 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="h-full w-full bg-gray-900">
-    <main class="min-h-full min-w-full flex-col">
-      <nav class="bg-gray-800 md:px-4 shadow-sm min-w-full">
-        <div class="mx-4 md:mx-auto max-w-4xl">
-          <div class="flex h-16 justify-between">
-            <div class="flex">
-              <div class="flex flex-shrink-0 items-center">
-                <h3 class="font-extrabold text-xs text-slate-900 py-4 px-2 bg-green-600 rounded-ss-xl rounded-se-xl rounded-es-xl">w311</h3>
-              </div>
-              <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                <%= link_to "Tasks", tasks_path, 
-                  class: "text-gray-100 hover:text-stone-2 inline-flex items-center border-b-2 border-emerald-500 
-                  hover:border-indigo-500 transition duration-300 ease-in-out px-1 pt-1 text-sm font-medium" %>
-              </div>
-            </div>
+  <body class="min-h-screen bg-gradient-to-b from-gray-200 to:white dark:bg-stone-800">
+    <div class="w-full min-h-full text-gray-800 dark:text-gray-100">
+      <%= render partial: 'shared/nav_bar' %>
 
-            <div class="hidden sm:-my-px sm:ml-6 sm:flex md:flex items-center sm:space-x-3">
-            <% if authenticated? %>
-            <span class="font-medium text-gray-100 inline-flex pt-1"><%= Current.user.email_address %></span>
-              <%= button_to session_path, 
-                class: 'py-2 px-4 rounded-md text-gray-100 transition duration-300 items-center  
-                ease-in-out px-1 text-sm font-medium hover:text-rose-600', method: :delete do %>
-                <i class="fa-solid fa-arrow-right-to-bracket fa-2xl"></i>
-              <% end %>
-            <% else %>
-              <%= button_to new_session_path, method: :get,
-                class: 'py-2 px-4 rounded-md text-gray-100 transition duration-300 items-center  
-                ease-in-out px-1 text-sm font-medium hover:text-emerald-600' do %>
-                <i class="fa-solid fa-person-walking-dashed-line-arrow-right fa-2xl"></i>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div class="py-10">
+      <div class="">
         <main>
-          <div class="mx-4 md:mx-auto md:px-4 max-w-4xl">
+          <div class="py-8 px-4 w-full lg:px-12 lg:mx-auto lg:max-w-5xl bg-white rounded-2xl shadow-md">
+            <%= render partial: 'shared/flash' if flash.present? %>
             <%= yield %>
           </div>
         </main>
       </div>
-    </main>
+    </div>
   </body>
 </html>

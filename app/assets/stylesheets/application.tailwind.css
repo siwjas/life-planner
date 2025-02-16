@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@config "../../config/tailwind.config.js";
 
 /*
 
@@ -12,3 +11,4 @@
 }
 
 */
+
