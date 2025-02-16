@@ -1,6 +1,17 @@
 module TasksHelper
-end
+  def icon_by_status(status)
+    if status == 'in_progress'
+      'calendar-clock' 
+    else
+      'calendar-check-2'
+    end
+  end
 
-#tcontent_tag(:span, 
-#        content_tag(:i, "", class: "fa-solid fa-circle-exclamation fa-lg"), 
-#        class: "text-rose-500 animate-pulse")
+  def detail_icon(status)
+    if status == 'in_progress'
+      'list-checks' 
+    else
+      'square-check'
+    end
+  end
+end

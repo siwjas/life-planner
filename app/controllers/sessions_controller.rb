@@ -16,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     terminate_session
-    redirect_to root_url
+    redirect_to home_url
   end
 end

@@ -1,12 +1,20 @@
 require 'dotiw'
 include ActionView::Helpers::DateHelper
-include ActionView::Helpers::TextHelper
-include ActionView::Helpers::NumberHelper
+#include ActionView::Helpers::TextHelper
+#include ActionView::Helpers::NumberHelper
 
 class Task < ApplicationRecord
   validates :name, :description, presence: true
   
   STATUSES = %w[in_progress completed archived].freeze
+
+  def a_day
+    expiration_date < Date.today ? 'Expirada' : 'No prazo'
+  end
+
+  def in_progress?
+    status == 'in_progress'
+  end
 
   def completed?
     status == 'completed'

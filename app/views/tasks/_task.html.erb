@@ -4,13 +4,13 @@
     <div class="group space-x-2 flex flex-1">
       <span class="mb-1 text-emerald-500 <%= 'text-gray-500 line-through' if task.completed? %>
           group-hover:text-emerald-600">
-        <%= lucide_icon('calendar-clock') %>
+        <%= lucide_icon(icon_by_status(task.status)) %>
       </span>
 
       <%= link_to task, class: "text-lg font-bold mb-1 text-emerald-600 
           group-hover:text-emerald-400 #{ 'text-gray-500 line-through' if task.completed? }" do %>
         <strong> <%= task.name %> </strong>  
-      <% end %>    
+      <% end %>
     </div>
     
     <div class="text-gray-700 gap-2 <%= (task.completed? || task.archived?) ? 'hidden' : 'flex' %>">
@@ -28,14 +28,15 @@
     </div>
   </div>
 
-  <p class="my-5">
-    <div class="text-gray-700">
-      <strong class="text-lg block font-bold mb-1">Description:</strong>
-      <span class=" <%='line-through' if task.completed? %>">
-        <%= task.description %>
-      </span>
+  <div class="my-5 text-gray-600 flex gap-3 divide-x-0">
+    <div class="">
+      <span class="<%= 'text-gray-400' if !task.in_progress? %>"><%= lucide_icon(detail_icon(task.status)) %></span>
     </div>
-  </p>
+
+    <div class="flex-1 <%='line-through' if !task.in_progress? %>">
+      <%= task.description.html_safe %>
+    </div>
+  </div>
 </div>
 
 
