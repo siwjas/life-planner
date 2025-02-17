@@ -2,23 +2,25 @@
   <% content_for :title, "Tasks" %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-extrabold text-2xl">Lista de tasks</h1>
+    <h1 class="font-extrabold text-2xl">Lista de tarefas</h1>
 
-    <%= link_to new_task_path, class: "flex items-center justify-center shadow group text-gray-500 flex itemsl-center gap-2 
-        w-14 h-14 border border-2 border-green-400 hover:border-green-500
-        hover:bg-green-200/20 hover:text-green-500 rounded-md transition duration-200 ease-in-out" do %>
-      <span aria-hidden="true" class="text-green-400 group-hover:text-green-500 group-hover:scale-150 transition duration-200 ease-in-out">
+    <%= link_to new_task_path, class: "group flex justify-center items-center w-14 h-14 shadow 
+        border-2 border-green-400 hover:border-green-500 hover:bg-green-200/20 
+        rounded-md transition duration-200 ease-in-out" do %>
+
+      <span aria-hidden="true" class="text-green-400 group-hover:scale-150 transition 
+            duration-200 ease-in-out">
         <%= lucide_icon('calendar-plus-2') %>
       </span>
     <% end %>
   </div>
 
-  <hr class="mb-4 border-amber-500">
+  <hr class="mb-4 border-amber-500 dark:border-stone-900">
 
   <% if @in_progress_tasks.empty? && @completed_tasks.empty? %>
-    <div class="dark: bg-gray-800 shadow rounded-lg px-8 py-5 my-4">
+    <div class="dark:bg-gray-800 shadow rounded-lg px-8 py-5 my-4">
       <p class="text-xl font-extrabold my-4">No Tasks!</p>
-      <p class="text-lgfont-medium">Create a new task. Or enjoy your new-found free time, yay!</p>
+      <p class="text-lg font-medium">Create a new task. Or enjoy your new-found free time, yay!</p>
     </div>
   <% else %>
     <h3 class="text-xl font-extrabold my-4">In Progress</h3>

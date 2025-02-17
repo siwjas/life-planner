@@ -4,10 +4,10 @@
     <div class="space-x-3 items-center me-auto flex">   
       <span class="shadow-md w-14 h-14 rounded-full overflow-hidden inline"><%= image_tag('logo_.png', width: '60') %></span> 
       
-      <h2 class="font-semibold drop-shadow-md text-3xl"><%= link_to 'Life Planner', home_path, class: 'hover:text-emerald-600' %></h2>
+      <h2 class="font-semibold drop-shadow-lg text-3xl"><%= link_to 'Life Planner', home_path, class: 'hover:text-blue-900 dark:hover:text-emerald-600' %></h2>
     </div>
 
-      <div class="lg:py-2 lg:px-2 flex items-center bg-white drop-shadow-md rounded-lg">
+      <div class="lg:py-2 lg:px-2 flex items-center bg-white dark:bg-stone-950 drop-shadow-md rounded-lg">
 
         <div class="hidden lg:flex ms-auto gap-5">
           <% nav_items.each do | item | %>
@@ -19,18 +19,19 @@
               <% if authenticated? %>
                 <span class="text-xs font-xs ml-8 lg:text-sm lg:font-sm lg:ml-14 text-md drop-shadow-md"><%= Current.user.email_address %></span>
                 
-                <%= button_to session_path, class: 'py-3 px-4 font-sm text-xs drop-shadow-sm flex justify-center gap-2 border-2
-                    border-gray-400 items-center hover:border-rose-500 hover:bg-red-300/10
-                    hover:text-gray-950 transition duration-200 ease-in-out rounded-md',
+                <%= button_to session_path, class: 'group py-3 px-4 font-sm text-xs drop-shadow-sm flex justify-center gap-2 border-2
+                    border-gray-400 items-center hover:border-rose-500 hover:text-gray-950 dark:hover:text-white
+                    transition duration-200 ease-in-out rounded-md',
                     method: :delete do %>
-                  Log out <%= lucide_icon('log-out') %>
+
+                  Log out <span class="group-hover:text-rose-500 transition-all"><%= lucide_icon('log-out') %></span>
                 <% end %>
               <% else %>
-                <%= button_to new_session_path, class: 'py-2 px-4 font-sm text-md drop-shadow-sm flex justify-center gap-2 border-2
-                    border-gray-400 items-center hover:border-green-500 hover:bg-gray-300/10
-                    hover:text-gray-950 transition duration-200 ease-in-out  rounded-md',
+                <%= button_to new_session_path, class: 'group py-3 px-4 font-sm text-md drop-shadow-sm flex justify-center gap-2 border-2
+                    border-gray-400 items-center hover:border-green-500 transition duration-200 ease-in-out rounded-md',
                     method: :get do %>
-                  Log in <%= lucide_icon('log-in') %> 
+
+                  Log in <span class="group-hover:text-green-500 transition-all"><%= lucide_icon('log-in') %></span> 
                 <% end %>     
               
                 <%# link_to 'Sign up', new_registration_path, 
@@ -45,8 +46,11 @@
 
         <div class="lg:hidden relative inline-block text-left">
           <div>
-            <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
-              <span class="p-3 text-lg">
+            <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white 
+                    px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 
+                    hover:ring-gray-500 dark:bg-gray-900 dark:hover:bg-gray-800
+                    hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+              <span class="p-3 text-lg dark:text-gray-100">
                 <%= lucide_icon('menu') %>
               </span>
             </button>
@@ -62,7 +66,7 @@
               From: "transform opacity-100 scale-100"
               To: "transform opacity-0 scale-95"
           -->
-          <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <div class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="py-1" role="none">
               <!-- Active: "bg-gray-100 text-gray-900 outline-none", Not Active: "text-gray-700" -->
               <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="menu-item-0">Edit</a>

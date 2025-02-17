@@ -1,36 +1,39 @@
-<div id="<%= dom_id task %>" class="bg-gray-100/30 border border-1 border-gray-300 dark:bg-gray-800 shadow-md rounded-lg px-5 py-3 my-4">
+<div id="<%= dom_id task %>" class="bg-gray-100/30 border border-1 border-gray-300 dark:border-gray-800 
+    dark:bg-gray-900 shadow-md rounded-lg px-5 py-3 my-4">
 
-  <div class="pb-3 w-full flex justify-between border-b-2 border-stone-300">
-    <div class="group space-x-2 flex flex-1">
+  <div class="pb-3 w-full flex justify-between items-start border-b-2 border-stone-300 dark:border-gray-800">
+    <div class="group flex flex-1 gap-2">
       <span class="mb-1 text-emerald-500 <%= 'text-gray-500 line-through' if task.completed? %>
           group-hover:text-emerald-600">
         <%= lucide_icon(icon_by_status(task.status)) %>
       </span>
 
-      <%= link_to task, class: "text-lg font-bold mb-1 text-emerald-600 
+      <%= link_to task, class: "font-medium text-md md:font-semibold md:text-lg mb-1 text-emerald-600 
           group-hover:text-emerald-400 #{ 'text-gray-500 line-through' if task.completed? }" do %>
-        <strong> <%= task.name %> </strong>  
+        <strong> <%= task.name %> </strong>
       <% end %>
     </div>
     
-    <div class="text-gray-700 gap-2 <%= (task.completed? || task.archived?) ? 'hidden' : 'flex' %>">
+    <div class="flex gap-2 ml-3 <%= (task.completed? || task.archived?) ? 'hidden' : 'flex' %>">
       <% if task.expired? %>
         <span class='text-rose-500 animate-pulse'>
           <%= lucide_icon('circle-alert') %>
         </span>
-        <strong class="text-rose-500"><%= task.deadline %></strong>        
+
+        <span class="text-rose-500 font-medium text-sm md:font-semibold md:text-md"><%= task.deadline %></span>
       <% else %>
-        <strong class="flex gap-2 <%= task.deadline == 'Today' ? 'text-amber-500' : 'text-emerald-600' %>">
-          <%= lucide_icon('alarm-clock') %>
-          <%= task.deadline %>
-        </strong> 
-      <% end %>   
+        <div class="flex gap-2 <%= task.deadline == 'Today' ? 'text-amber-500 dark:text-red-400' : 'text-emerald-600' %>">
+          <span class="flex items-center gap-2 font-medium text-sm md:font-semibold md:text-md">
+            <%= lucide_icon('alarm-clock') %> <%= task.deadline %>
+          </span>
+        </div> 
+      <% end %>
     </div>
   </div>
 
-  <div class="my-5 text-gray-600 flex gap-3 divide-x-0">
+  <div class="my-5 text-gray-600 dark:text-gray-300 flex gap-3 divide-x-0">
     <div class="">
-      <span class="<%= 'text-gray-400' if !task.in_progress? %>"><%= lucide_icon(detail_icon(task.status)) %></span>
+      <span class="<%= 'text-gray-500 dark:text-gray-300' if !task.in_progress? %>"><%= lucide_icon(detail_icon(task.status)) %></span>
     </div>
 
     <div class="flex-1 <%='line-through' if !task.in_progress? %>">

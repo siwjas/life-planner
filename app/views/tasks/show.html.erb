@@ -1,12 +1,14 @@
-<h3 class="text-4xl font-extrabold my-4 text-gray-100">Task</h3>
+
 <div class="w-full">
-  <div class="bg-gray-800 shadow rounded-lg px-5 py-3 my-4">
-    <h1 class="font-bold text-2xl my-4 text-gray-100">
+  <div class="bg-white dark:bg-gray-800 px-5 py-3">
+    <h2 class="font-semibold text-xl md:text-2xl md:font-extrabold dark:text-gray-100">
       <%= @task.name %>
-    </h1>
+    </h2>
+    
+    <hr class="my-4 border-amber-500 dark:border-stone-900">
 
     <% unless @task.completed? %>
-      <p class="text-xm my-4 text-gray-300">
+      <p class="text-xm my-4 dark:text-gray-300">
         <strong class="text-sm">Deadline: </strong>
         <span class="<%= 'text-rose-600' if @task.expired? %>">
           <%= @task.deadline %>
@@ -14,15 +16,23 @@
       </p>
     <% end %>
 
-    <p class="my-4 text-gray-300">
+    <p class="my-4 text-gray-600 dark:text-gray-300">
       <%= @task.description %>
     </p>
 
-    <%= link_to "Edit", edit_task_path(@task), class: "mt-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
-    <%= link_to "Back to tasks", tasks_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" %>
-    <div class="inline-block ml-2">
-      <%= button_to "Destroy", @task, method: :delete, data: { turbo_confirm: 'Are you shure?' }, 
-          class: "mt-2 rounded-lg py-3 px-5 bg-red-700 text-gray-100 font-medium hover:bg-red-600" %>
+    <div class="flex gap-2">
+      <%= link_to tasks_path, class: "mt-2 rounded-lg p-3 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" do %>
+        <span><%= lucide_icon('arrow-left') %></span>
+      <% end %>
+
+      <%= link_to edit_task_path(@task), class: "mt-2 rounded-lg p-3 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" do %>
+        <span><%= lucide_icon('square-pen') %></span>
+      <% end %>
+
+      <%= button_to @task, method: :delete, data: { turbo_confirm: 'Are you shure?' }, 
+            class: "mt-2 rounded-lg p-3 bg-red-700 text-gray-100 font-medium hover:bg-red-600" do %>
+          <span><%= lucide_icon('trash-2') %></span>
+      <% end %>
     </div>
   </div>
 </div>

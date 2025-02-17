@@ -9,11 +9,11 @@ module ApplicationHelper
 
   def nav_class(path)
     if current_page?(path)
-      "shadow py-2 px-5 inline-flex items-center bg-emerald-400 text-white hover:shadow-md 
-       text-sm rounded-lg font-medium transition duration-200 ease-in-out"
+      "shadow py-2 px-5 inline-flex items-center bg-emerald-400 dark:bg-gray-800 text-white 
+      hover:shadow-md text-sm rounded-lg font-medium transition duration-300 ease-in-out"
     else
-      "shadow py-2 px-5 inline-flex items-center bg-gray-100 hover:bg-emerald-400 hover:text-white hover:shadow-md 
-       text-sm rounded-lg font-medium transition duration-200 ease-in-out"
+      "shadow py-2 px-5 inline-flex items-center bg-gray-100 hover:bg-emerald-400 dark:bg-transparent dark:hover:bg-gray-800 
+      hover:text-white hover:shadow-md text-sm rounded-lg font-medium transition duration-300 ease-in-out"
     end
   end
 
