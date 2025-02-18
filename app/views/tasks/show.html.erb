@@ -1,11 +1,19 @@
 
-<div class="w-full">
-  <div class="bg-white dark:bg-gray-800 px-5 py-3">
-    <h2 class="font-semibold text-xl md:text-2xl md:font-extrabold dark:text-gray-100">
-      <%= @task.name %>
-    </h2>
+<div class="w-full my-2 px-4">
+  <div class="bg-white dark:bg-gray-800">
+
+    <div class="flex justify-between items-center gap-4">
+      <h2 class="font-semibold text-xl md:text-2xl md:font-extrabold dark:text-gray-100">
+        <%= @task.name %>
+      </h2>
+
+      <span class="md:hidden">
+        <%= render 'dropdown_menu', task: @task %>
+      </span>     
+
+    </div>
     
-    <hr class="my-4 border-amber-500 dark:border-stone-900">
+    <hr class="my-2 border-amber-500 dark:border-stone-900">
 
     <% unless @task.completed? %>
       <p class="text-xm my-4 dark:text-gray-300">
@@ -20,7 +28,7 @@
       <%= @task.description %>
     </p>
 
-    <div class="flex gap-2">
+    <div class="hidden md:flex md:gap-2">
       <%= link_to tasks_path, class: "mt-2 rounded-lg p-3 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" do %>
         <span><%= lucide_icon('arrow-left') %></span>
       <% end %>
