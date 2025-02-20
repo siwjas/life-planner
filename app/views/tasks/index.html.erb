@@ -4,13 +4,18 @@
   <div class="flex justify-between items-center">
     <h1 class="font-extrabold text-2xl">Lista de tarefas</h1>
 
-    <%= link_to new_task_path, class: "group flex justify-center items-center w-14 h-14 shadow 
+    <%= link_to new_task_path, class: "relative group flex justify-center items-center w-14 h-14 shadow 
         border-2 border-green-400 hover:border-green-500 hover:bg-green-200/20 
         rounded-md transition duration-200 ease-in-out" do %>
 
       <span aria-hidden="true" class="text-green-400 group-hover:scale-150 transition 
             duration-200 ease-in-out">
         <%= lucide_icon('calendar-plus-2') %>
+      </span>
+      
+      <span class="absolute rounded-full bg-rose-500 -right-3 -top-3
+            font-light text-xs text-gray-100 py-1 px-2 shadow-md">
+        <%= @in_progress_tasks.size %>
       </span>
     <% end %>
   </div>
