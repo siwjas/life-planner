@@ -1,13 +1,14 @@
-<nav class="px-2 my-6 sm:my-10 sm:mb-14 sm:px-4 bg-transparent">
+<nav class="sticky top-0 px-2 my-6 sm:my-10 sm:mb-14 sm:px-4 bg-transparent z-10">
   <div class="min-w-full px-1 h-16 flex items-center">
 
     <div class="space-x-3 items-center me-auto flex">   
       <span class="shadow-md w-14 h-14 rounded-full overflow-hidden inline"><%= image_tag('logo_.png', width: '60') %></span> 
       
-      <h2 class="font-semibold drop-shadow-lg text-3xl"><%= link_to 'Life Planner', home_path, class: 'hover:text-blue-900 dark:hover:text-emerald-600' %></h2>
+      <h2 class="font-semibold drop-shadow-lg text-3xl hover:text-blue-900 dark:hover:text-emerald-600"><%= link_to 'Life Planner', home_path, class: '' %></h2>
     </div>
 
-      <div class="lg:py-2 lg:px-2 flex items-center bg-white dark:bg-stone-950 drop-shadow-md rounded-lg">
+      <div class="lg:py-2 lg:px-2 flex items-center bg-white/30 dark:bg-neutral-800/30 backdrop-blur-lg border border-1 
+         border-white dark:border-stone-800  drop-shadow-md rounded-lg">
 
         <div class="hidden lg:flex ms-auto gap-5">
           <% nav_items.each do | item | %>

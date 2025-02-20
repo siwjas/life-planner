@@ -5,13 +5,13 @@
             type="button" 
             class="group inline-flex w-full justify-center gap-x-1.5 
             p-2 text-sm font-semibold text-gray-900 shadow-sm hover:shadow
-            dark:bg-gray-900 dark:hover:bg-gray-950 transition-all
-            hover:bg-gray-200 rounded-md bg-white" 
+            border border-1 border-gray-200 dark:border-stone-600/50 bg-gray-100 hover:bg-gray-200
+            dark:bg-stone-800/30 dark:hover:bg-stone-800/70 transition-all rounded-md " 
             id="menu-button"  
             aria-expanded="true" 
             aria-haspopup="true">
 
-      <span class="text-md text-gray-400 group-hover:text-gray-600">
+      <span class="text-md text-gray-600 group-hover:text-gray-400">
         <%= lucide_icon('ellipsis-vertical') %>
       </span>
     </button>
@@ -83,7 +83,7 @@
           </svg>
         
           <%= button_to 'Delete task', @task, method: :delete, data: { turbo_confirm: 'Are you shure?' },
-                class: "hover:underline group-hover:text-rose-600 dark:group-hover:text-rose-500" %>
+                class: "group-hover:text-rose-600 dark:group-hover:text-rose-500" %>
         </span>
       </div>
     </div>
