@@ -14,27 +14,54 @@
       <% end %>
     </div>
     
-    <div class="gap-2 ml-3 <%= task.completed? ? 'hidden' : 'flex' %>">
+    <div class="<%= task.completed? ? 'hidden' : 'inline-flex' %>">
       <% if task.expired? %>
-        <span class='text-rose-500 animate-pulse'>
-          <%= lucide_icon('circle-alert') %>
-        </span>
+        <div class="<%= badge_style_by_status(task.deadline) %>">
 
-        <span class="text-rose-500 font-medium text-sm md:font-semibold md:text-md"><%= task.deadline %></span>
-      <% else %>
-        <div class="flex gap-2 <%= task.deadline == 'Today' ? 'text-amber-500 dark:text-red-400' : 'text-emerald-600' %>">
-          <span class="flex items-center gap-2 font-medium text-sm md:font-semibold md:text-md">
-            <%= lucide_icon('alarm-clock') %> <%= task.deadline %>
+          <span class='flex justify-center items-center'>
+            <svg width="16" height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              class="lucide lucide-clock-alert animate-pulse">
+              <path d="M12 6v6l4 2"/>
+              <path d="M16 21.16a10 10 0 1 1 5-13.516"/>
+              <path d="M20 11.5v6"/>
+              <path d="M20 21.5h.01"/>
+            </svg>
           </span>
+
+          <span class=""><%= task.deadline %></span>
+        </div>
+      <% else %>
+        <div class="<%= badge_style_by_status(task.deadline) %>">
+
+          <span class="flex justify-center items-center">
+            <svg width="16" height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              class="lucide lucide-clock">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </span>
+
+          <%= task.deadline %>
         </div> 
       <% end %>
     </div>
-
   </div>
 
   <div class="flex my-5 text-gray-600 dark:text-gray-300 gap-3">
     <div class="">
-      <span class="<%= 'text-gray-500 dark:text-gray-300' if !task.in_progress? %>">
+      <span>
         <%= lucide_icon(detail_icon(task.status)) %>
       </span>
     </div>

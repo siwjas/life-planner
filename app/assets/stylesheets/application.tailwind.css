@@ -2,18 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .badge_neutral {
+    @apply inline-flex gap-1 items-center ring-1 ring-inset ring-gray-600/10 bg-gray-100 text-gray-700 text-xs font-medium me-2 px-2 py-1 rounded-md dark:bg-gray-700 dark:text-gray-300;
+  }
+
+  .badge_default {
+    @apply inline-flex gap-1 items-center ring-1 ring-inset ring-blue-600/20 bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2 py-1 rounded-md dark:bg-blue-900 dark:text-blue-300;
+  }
+
+  .badge_green {
+    @apply inline-flex gap-1 items-center ring-1 ring-inset ring-green-600/20 bg-green-100 text-green-800 text-xs font-medium me-2 px-2 py-1 rounded-md dark:bg-green-900 dark:text-green-300;
+  }
+  .badge_red {
+    @apply inline-flex gap-1 items-center ring-1 ring-inset ring-red-600/20 bg-red-100 text-red-800 text-xs font-medium me-2 px-2 py-1 rounded-md dark:bg-red-900 dark:text-red-300;
   }
 }
-
-*/
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: .5s;
 }
-
