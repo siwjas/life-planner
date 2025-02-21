@@ -35,5 +35,7 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
+# cache files
 solid/life_planner_development_cache.sqlite3-wal
 solid/life_planner_development_cache.sqlite3-shm
+solid/life_planner_development_cache.sqlite3
