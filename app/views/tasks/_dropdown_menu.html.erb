@@ -3,7 +3,7 @@
     <button data-dropdown-target="button" 
             data-action="click->dropdown#toggle click@window->dropdown#hide keydown.esc->dropdown#close" 
             type="button" 
-            class="group inline-flex w-full justify-center gap-x-1.5 
+            class="group outline-none inline-flex w-full justify-center gap-x-1.5 
             p-2 text-sm font-semibold shadow-sm hover:shadow
             hover:bg-gray-200 dark:hover:bg-gray-200/20
             focus:bg-gray-200 dark:focus:bg-gray-200/20
@@ -32,43 +32,43 @@
 
   <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md
        text-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-900 ring-1 
-       shadow-lg ring-black/5 focus:outline-hidden divide-y-2 overflow-hidden" 
-      role="menu" 
+       shadow-lg ring-black/10 font-medium focus:outline-hidden divide-y-2 overflow-hidden" 
+      role="menu"
       aria-orientation="vertical" 
       aria-labelledby="menu-button"
       tabindex="-1">
       
       <div role="none">
       <!-- Active: "bg-gray-100 text-gray-900 outline-none", Not Active: "text-gray-700" -->
-      <span class="group flex items-center gap-2 p-4 hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-600 dark:hover:text-white transition-all">
-        <svg width="20" height="20" viewBox="0 0 24 24" 
-          fill="none" stroke="currentColor" 
-          stroke-width="2" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
+      <span class="relative group flex items-center gap-2 p-4 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-600 dark:hover:text-white transition-all">
+        <svg width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
           class="lucide lucide-arrow-left group-hover:text-emerald-500 group-hover:-translate-x-1 transition-all">
           <path d="m12 19-7-7 7-7"/>
           <path d="M19 12H5"/>
-        </svg>         
-        <%= link_to 'Back to tasks', tasks_path %>  
+        </svg> Back to tasks
+        <%= link_to "", tasks_path, class: 'absolute inset-0' %>
       </span> 
 
-        <span class="group flex items-center gap-2 p-4 hover:bg-gray-200 hover:text-gray-700 dark:hover:bg-gray-600 dark:hover:text-white transition-all">
-          <svg width="20" height="20" viewBox="0 0 24 24" 
-            fill="none" stroke="currentColor" 
-            stroke-width="2" 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            class="lucide lucide-square-pen group-hover:text-emerald-500 transition-all">
+        <span class="relative group flex items-center gap-2 p-4 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-600 dark:hover:text-white transition-all">
+          <svg width="20" height="20" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-square-pen group-hover:text-yellow-600 dark:group-hover:text-yellow-500 transition-all">
             <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
             <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/>
-          </svg>
-          <%= link_to 'Edit this task', edit_task_path(@task) %>  
+          </svg> Edit this task
+          <%= link_to "", edit_task_path(@task), class: 'absolute inset-0' %>  
         </span>
 
-        <span class="group flex gap-2 items-center p-4 text-sm font-medium border-t text-gray-600 
+        <span class="relative group flex gap-2 items-center p-4 text-sm font-medium border-t text-gray-600 
             dark:text-gray-100 border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600
-            hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all">
+            hover:bg-gray-200 hover:text-rose-500 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300">
 
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" 
                 stroke="currentColor" stroke-width="2" 
@@ -80,9 +80,9 @@
                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
                 <line x1="10" x2="10" y1="11" y2="17"/>
                 <line x1="14" x2="14" y1="11" y2="17"/>
-          </svg>        
-          <%= button_to 'Delete this task', @task, method: :delete, data: { turbo_confirm: 'Are you shure?' },
-                class: "group-hover:text-rose-600 dark:group-hover:text-rose-500" %>
+          </svg> Delete this task
+          <%= button_to "", @task, method: :delete, data: { turbo_confirm: 'Are you shure?' },
+                class: "absolute inset-0" %>
         </span>
       </div>
     </div>
