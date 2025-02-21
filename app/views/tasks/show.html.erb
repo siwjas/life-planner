@@ -18,9 +18,15 @@
     <% unless @task.completed? %>
       <p class="text-xm my-4 dark:text-gray-300">
         <strong class="text-sm">Deadline: </strong>
-        <span class="<%= 'text-rose-600' if @task.expired? %>">
+        <% if @task.expired? %>
+          <span class="<%= 'text-rose-600' if @task.expired? %>">
+            <%= "Expired #{distance_of_time_in_words(Date.today, @task.expiration_date)} ago" %>
+          </span>
+        <% elsif @task.deadline == "Today" %>
           <%= @task.deadline %>
-        </span>
+        <% else %>
+          <%=  " In #{distance_of_time_in_words(Date.today, @task.expiration_date)}" %>
+        <% end %>
       </p>
     <% end %>
 
