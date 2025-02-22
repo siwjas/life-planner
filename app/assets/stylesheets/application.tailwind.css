@@ -17,6 +17,36 @@
   .badge_red {
     @apply inline-flex gap-1 items-center ring-1 ring-inset ring-red-600/20 bg-red-100 text-red-800 text-xs font-medium me-2 px-2 py-1 rounded-md dark:bg-red-900 dark:text-red-300;
   }
+
+  .mobile-menu-enter {
+    animation: slideDown 0.2s ease-out;
+  }
+
+  .mobile-menu-exit {
+    animation: slideUp 0.2s ease-in;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+  }
 }
 
 ::view-transition-old(root),

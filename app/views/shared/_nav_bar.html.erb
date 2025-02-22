@@ -1,48 +1,52 @@
 <nav class="sticky top-0 px-2 my-6 sm:my-10 sm:mb-14 sm:px-4 bg-transparent z-10">
-  <div class="min-w-full px-1 h-16 flex items-center">
+  <div data-controller="mobile-menu" class="min-w-full px-1 h-16 flex items-center">
 
-    <div class="space-x-3 items-center me-auto flex">   
+    <div class="hidden space-x-3 items-center me-auto lg:flex">   
       <span class="shadow-md w-14 h-14 rounded-full overflow-hidden inline"><%= image_tag('logo_.png', width: '60') %></span> 
       
       <h2 class="hidden lg:flex font-semibold drop-shadow-lg text-3xl hover:text-blue-900 dark:hover:text-emerald-600"><%= link_to 'Life Planner', home_path, class: '' %></h2>
     </div>
 
-      <div class="lg:py-2 lg:px-2 flex items-center bg-white/30 dark:bg-stone-800/30 backdrop-blur-lg border border-1 
-         border-white dark:border-stone-700  drop-shadow-md rounded-lg">
+    <div class="hidden lg:p-2 lg:flex items-center bg-white/30 dark:bg-stone-800/30 backdrop-blur-lg border border-1 
+        border-white dark:border-stone-700  drop-shadow-md rounded-lg">
 
-        <div class="hidden lg:flex ms-auto gap-5">
-          <% nav_items.each do | item | %>
-            <%= link_to(item[:page], item[:href], class: nav_class(item[:href]), aria: { current: aria(item[:href])}) %>
-          <% end %>
-        
-          <div class="flex-none">
-            <div class="profile-menu hidden sm:flex sm:items-center sm:gap-4">
-              <% if authenticated? %>
-                <span class="text-xs font-xs ml-8 lg:text-sm lg:font-sm lg:ml-14 text-md drop-shadow-md"><%= Current.user.email_address %></span>
-                
-                <%= button_to session_path, class: 'group py-3 px-4 font-sm text-xs drop-shadow-sm flex justify-center gap-2 border-2
-                    border-gray-400 items-center hover:border-rose-500 hover:text-gray-950 dark:hover:text-white
-                    transition duration-200 ease-in-out rounded-md',
-                    method: :delete do %>
-
-                  Log out <span class="group-hover:text-rose-500 transition-all"><%= lucide_icon('log-out') %></span>
-                <% end %>
-              <% else %>
-                <%= button_to new_session_path, class: 'group py-3 px-4 font-sm text-md drop-shadow-sm flex justify-center gap-2 border-2
-                    border-gray-400 items-center hover:border-green-500 transition duration-200 ease-in-out rounded-md',
-                    method: :get do %>
-
-                  Log in <span class="group-hover:text-green-500 transition-all"><%= lucide_icon('log-in') %></span> 
-                <% end %>     
+      <div class="hidden lg:flex ms-auto gap-5">
+        <% nav_items.each do | item | %>
+          <%= link_to(item[:page], item[:href], class: nav_class(item[:href]), aria: { current: aria(item[:href])}) %>
+        <% end %>
+      
+        <div class="flex-none">
+          <div class="profile-menu hidden sm:flex sm:items-center sm:gap-4">
+            <% if authenticated? %>
+              <span class="text-xs font-xs ml-8 lg:text-sm lg:font-sm lg:ml-14 text-md drop-shadow-md"><%= Current.user.email_address %></span>
               
-                <%# link_to 'Sign up', new_registration_path, 
-                    class: 'font-semibold text-gray-100  duration-200 
-                    ease-in-out hover:text-yellow-700' %>
+              <%= button_to session_path, class: 'group py-3 px-4 font-sm text-xs drop-shadow-sm flex justify-center gap-2 border-2
+                  border-gray-400 items-center hover:border-rose-500 hover:text-gray-950 dark:hover:text-white
+                  transition duration-200 ease-in-out rounded-md',
+                  method: :delete do %>
 
+                Log out <span class="group-hover:text-rose-500 transition-all"><%= lucide_icon('log-out') %></span>
               <% end %>
-            </div>
+            <% else %>
+              <%= button_to new_session_path, class: 'group py-3 px-4 font-sm text-md drop-shadow-sm flex justify-center gap-2 border-2
+                  border-gray-400 items-center hover:border-green-500 transition duration-200 ease-in-out rounded-md',
+                  method: :get do %>
+
+                Log in <span class="group-hover:text-green-500 transition-all"><%= lucide_icon('log-in') %></span> 
+              <% end %>     
+            
+              <%# link_to 'Sign up', new_registration_path, 
+                  class: 'font-semibold text-gray-100  duration-200 
+                  ease-in-out hover:text-yellow-700' %>
+
+            <% end %>
           </div>
         </div>
       </div>
+    </div>
   </div>
 </nav>
+
+
+
+   <!-- Mobile menu, show/hide based on menu state. -->
