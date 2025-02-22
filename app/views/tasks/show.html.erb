@@ -1,52 +1,63 @@
 
-<div class="w-full my-2 px-4">
-  <div class="">
+<div class="w-full bg-gray-100/30 dark:bg-neutral-800/30 backdrop-blur-lg
+     border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg my-2 px-4">
 
-    <div class="flex justify-between items-center gap-4">
+  <div>
+    <div class="flex justify-between items-center gap-4 py-4">
       <h2 class="font-semibold text-xl md:text-2xl md:font-extrabold dark:text-gray-100">
         <%= @task.name %>
       </h2>
 
       <span class="md:hidden">
         <%= render 'dropdown_menu', task: @task %>
-      </span>     
-
+      </span>
     </div>
     
-    <hr class="my-2 border-amber-500 dark:border-stone-900">
+    <hr class="my-2 border-stone-600 dark:border-stone-500">
 
     <% unless @task.completed? %>
-      <p class="text-xm my-4 dark:text-gray-300">
+      <p class="my-4 dark:text-gray-300">
         <strong class="text-sm">Deadline: </strong>
         
         <% if @task.expired? %>
-          <span class="<%= 'text-rose-600' if @task.expired? %>">
+          <span class="font-medium text-lg <%= 'text-rose-600' if @task.expired? %>">
             <%= "Expired #{distance_of_time_in_words(Date.today, @task.expiration_date)} ago" %>
           </span>
         <% elsif @task.deadline == "Today" %>
-          <%= @task.deadline %>
+          <span class="font-medium text-lg">
+            <%= @task.deadline %>
+          </span>
         <% else %>
-          <%= @task.expiration_date.nil? ? "No deadline" : " In #{distance_of_time_in_words(Date.today, @task.expiration_date)}" %>
+          <span class="font-medium text-lg">
+            <%= @task.expiration_date.nil? ? "No deadline" : " In #{distance_of_time_in_words(Date.today, @task.expiration_date)}" %>
+          </span>
         <% end %>
       </p>
     <% end %>
 
-    <p class="my-4 text-gray-600 dark:text-gray-300">
-      <%= @task.description %>
+    <p class="my-4 font-medium text-lg text-gray-600 dark:text-gray-300">
+      <%= @task.description.html_safe %>
     </p>
 
-    <div class="hidden md:flex md:gap-2">
-      <%= link_to tasks_path, class: "mt-2 rounded-lg p-3 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" do %>
-        <span><%= lucide_icon('arrow-left') %></span>
+    <div class="hidden md:flex md:gap-2 py-4">
+      <%= link_to tasks_path, class: "group rounded-lg py-3 px-5 bg-stone-500 text-gray-100 inline-block font-medium 
+          hover:bg-stone-600 dark:bg-stone-600 dark:hover:bg-stone-500" do %>
+        <%= lucide_icon 'arrow-left', 
+            class: 'drop-shadow group-hover:text-blue-400 dark:group-hover:text-stone-800 group-hover:-translate-x-2 
+            transition-all durantion-300'  %>
       <% end %>
 
-      <%= link_to edit_task_path(@task), class: "mt-2 rounded-lg p-3 bg-gray-700 text-gray-100 inline-block font-medium hover:bg-gray-600" do %>
-        <span><%= lucide_icon('square-pen') %></span>
+      <%= link_to edit_task_path(@task), class: "group rounded-lg p-3 bg-stone-500 text-gray-100 inline-block 
+          font-medium hover:bg-stone-600 dark:bg-stone-600 dark:hover:bg-stone-500" do %>
+        <%= lucide_icon 'square-pen', 
+            class: 'drop-shadow group-hover:text-yellow-400 dark:group-hover:text-stone-800 
+            transition-all durantion-300' %>
       <% end %>
 
       <%= button_to @task, method: :delete, data: { turbo_confirm: 'Are you shure?' }, 
-            class: "mt-2 rounded-lg p-3 bg-red-700 text-gray-100 font-medium hover:bg-red-600" do %>
-          <span><%= lucide_icon('trash-2') %></span>
+            class: "group rounded-lg p-3 bg-red-700 text-gray-100 font-medium hover:bg-red-600" do %>
+          <%= lucide_icon 'trash-2', 
+              class: 'drop-shadow group-hover:text-stone-400 dark:group-hover:text-stone-800 transition-all durantion-300' %>
       <% end %>
     </div>
   </div>

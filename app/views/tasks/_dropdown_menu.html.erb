@@ -4,16 +4,16 @@
             data-action="click->dropdown#toggle click@window->dropdown#hide keydown.esc->dropdown#close" 
             type="button" 
             class="group outline-none inline-flex w-full justify-center gap-x-1.5 
-            p-2 text-sm font-semibold shadow-sm hover:shadow
-            hover:bg-gray-200 dark:hover:bg-gray-200/20
-            focus:bg-gray-200 dark:focus:bg-gray-200/20
+            p-2 text-sm bg-gray-300 font-semibold shadow-sm hover:shadow
+            hover:bg-gray-400 dark:hover:bg-gray-200/20
+            focus:bg-gray-400 focus:ring dark:focus:bg-gray-200/20
             clicked:ring-emerald-400 transition-all rounded-md" 
             id="menu-button"  
             aria-expanded="true" 
             aria-haspopup="true">
 
-      <span class="text-md text-gray-400 dark:group-hover:text-gray-200 
-            group-hover:text-gray-600 dark:group-focus:text-gray-100 group-focus:text-gray-600">
+      <span class="text-md text-gray-800 dark:group-hover:text-gray-200 
+            group-hover:text-gray-200 dark:group-focus:text-gray-100 group-focus:text-gray-200">
         <%= lucide_icon('ellipsis-vertical') %>
       </span>
     </button>
@@ -31,7 +31,7 @@
   -->
 
   <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md
-       text-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-900 ring-1 
+       text-sm text-gray-700 dark:text-gray-400 bg-stone-400 backdrop-blur-md dark:bg-gray-900 ring-1 
        shadow-lg ring-black/10 font-medium focus:outline-hidden divide-y-2 overflow-hidden" 
       role="menu"
       aria-orientation="vertical" 
@@ -40,7 +40,7 @@
       
       <div role="none">
       <!-- Active: "bg-gray-100 text-gray-900 outline-none", Not Active: "text-gray-700" -->
-      <span class="relative group flex items-center gap-2 p-4 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-600 
+      <span class="relative group flex items-center gap-2 p-4 hover:bg-stone-500 hover:text-gray-100 dark:hover:bg-gray-600 
           dark:hover:text-white transition-all">
         <svg width="20" height="20" viewBox="0 0 24 24"
           fill="none" stroke="currentColor"
@@ -54,7 +54,7 @@
         <%= link_to "", tasks_path, class: 'absolute inset-0' %>
       </span> 
 
-        <span class="relative group flex items-center gap-2 p-4 hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-600 
+        <span class="relative group flex items-center gap-2 p-4 hover:bg-stone-500 hover:text-gray-100 dark:hover:bg-gray-600 
             dark:hover:text-white transition-all">
           <svg width="20" height="20" viewBox="0 0 24 24"
             fill="none" stroke="currentColor"
@@ -68,9 +68,10 @@
           <%= link_to "", edit_task_path(@task), class: 'absolute inset-0' %>  
         </span>
 
-        <span class="relative group flex gap-2 items-center p-4 text-sm font-medium border-t text-gray-600 
-            dark:text-gray-100 border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600
-            hover:bg-gray-200 hover:text-rose-500 dark:bg-gray-800 dark:hover:bg-gray-700 transition-all duration-300">
+        <span class="relative group flex gap-2 items-center p-4 text-sm font-medium border-t text-gray-100 
+            dark:text-gray-100 border-gray-200 rounded-b-lg hover:bg-stone-600 dark:border-gray-600
+            hover:text-rose-500 dark:bg-gray-800/40 dark:hover:bg-gray-700 
+            transition-all duration-300 backdrop-blur-md">
 
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" 
                 stroke="currentColor" stroke-width="2" 

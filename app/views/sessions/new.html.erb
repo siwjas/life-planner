@@ -1,6 +1,7 @@
 <%= form_with url: session_url, class: "contents" do |form| %>
-  <div class="py-4 w-full sm:mx-auto sm:max-w-xl shadow-md border border-1 border-gray-300
-      bg-white/30 dark:bg-neutral-800/30 backdrop-blur-lg dark:border-stone-800 rounded-lg">
+  <div class="py-4 w-full sm:mx-auto sm:max-w-xl shadow-md border border-1 border-white
+      bg-white/30 dark:bg-neutral-800/30 backdrop-blur-lg dark:border-stone-600
+      rounded-lg">
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <h2 class="mt-2 text-center text-2xl/9 font-bold tracking-tight">Sign in to your account</h2>
@@ -33,14 +34,14 @@
         </div>
       </div>
 
-      <div class="my-5 text-white">
+      <div class="my-5 text-gray-800">
         <%= form.submit "Sign in", 
             class: "transition duration-300 ease-in-out border border-1 dark:border-blue-400 flex w-full justify-center 
-            rounded-lg bg-indigo-600 px-4 py-3 text-sm/6 font-semibold shadow-md hover:bg-indigo-500 
+            rounded-lg bg-emerald-500 hover:bg-emerald-400 px-4 py-3 text-sm/6 font-semibold shadow-md
             focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
       </div>
 
-      <div class="my-5 text-white">
+      <div class="my-5 text-gray-100">
         <%= link_to "Cancel", root_path, 
             class: "transition duration-300 ease-in-out flex w-full justify-center rounded-lg bg-rose-500 
             px-4 py-3 text-sm/6 font-semibold border border-1 dark:border-rose-400 shadow-md hover:bg-rose-400 

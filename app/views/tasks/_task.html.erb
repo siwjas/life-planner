@@ -1,15 +1,17 @@
 <div id="<%= dom_id task %>" class="bg-gray-100/30 dark:bg-neutral-800/30 backdrop-blur-lg
      border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg px-5 py-3 my-4">
 
-  <div class="py-2 w-full flex justify-between items-start border-b-2 border-stone-300 dark:border-gray-700 z-0">
+  <div class="py-2 w-full flex justify-between items-start border-b-2 border-stone-300 
+     dark:border-gray-700 z-0">
     <div class="group flex flex-1 gap-2">
-      <span class="mb-1 text-emerald-500 <%= 'text-gray-500 line-through' if task.completed? %>
-          group-hover:text-emerald-600">
-        <%= lucide_icon(icon_by_status(task.status)) %>
+      <span class="mb-1 text-gray-600 dark:text-gray-500 <%= 'text-gray-600 line-through' if task.completed? %>
+          group-hover:text-stone-700 dark:group-hover:text-gray-400">
+        <%= lucide_icon icon_by_status(task.status) %>
       </span>
 
-      <%= link_to task, class: "font-medium text-md md:font-semibold md:text-lg mb-1 text-emerald-600 
-          group-hover:text-emerald-400 #{ 'text-gray-500 line-through' if task.completed? }" do %>
+      <%= link_to task, class: "font-medium text-md md:font-semibold md:text-lg mb-1 
+          text-stone-700 dark:text-gray-400 hover:text-stone-800 dark:hover:text-gray-300
+          #{ 'line-through' if task.completed? }" do %>
         <strong> <%= task.name %> </strong>
       <% end %>
     </div>
@@ -59,7 +61,7 @@
     </div>
   </div>
 
-  <div class="flex my-5 text-gray-600 dark:text-gray-300 gap-3">
+  <div class="flex my-5 text-stone-800 dark:text-gray-300 gap-3">
     <div class="">
       <span>
         <%= lucide_icon(detail_icon(task.status)) %>
