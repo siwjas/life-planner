@@ -1,17 +1,18 @@
-<div id="<%= dom_id task %>" class="bg-gray-100/30 dark:bg-neutral-800/30 backdrop-blur-lg
-     border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg px-5 py-3 my-4">
+<div id="<%= dom_id task %>" class="bg-white/70 dark:bg-neutral-800/30 backdrop-blur-md
+     border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg px-4 py-3 my-4">
 
-  <div class="py-2 w-full flex justify-between items-start border-b-2 border-stone-300 
+  <div class="py-2 w-full flex justify-between gap-3 items-start border-b-2 border-stone-300 
      dark:border-gray-700 z-0">
     <div class="group flex flex-1 gap-2">
-      <span class="mb-1 text-gray-600 dark:text-gray-500 <%= 'text-gray-600 line-through' if task.completed? %>
-          group-hover:text-stone-700 dark:group-hover:text-gray-400">
-        <%= lucide_icon icon_by_status(task.status) %>
-      </span>
+      <%= tag.span class: ["mb-1 dark:text-gray-500 group-hover:text-stone-700 dark:group-hover:text-gray-400 transition-all",
+          { "text-gray-600 line-through": task.completed? }] do %>
 
-      <%= link_to task, class: "font-medium text-md md:font-semibold md:text-lg mb-1 
-          text-stone-700 dark:text-gray-400 hover:text-stone-800 dark:hover:text-gray-300
-          #{ 'line-through' if task.completed? }" do %>
+        <%= lucide_icon icon_by_status(task.status) %>
+      <% end %>
+
+      <%= link_to task, class: ["font-medium text-md md:font-semibold md:text-lg mb-1 
+          text-stone-700 dark:text-gray-400 hover:text-stone-800 dark:hover:text-gray-300",
+          { "line-through": task.completed? }] do %>
         <strong> <%= task.name %> </strong>
       <% end %>
     </div>
@@ -19,8 +20,8 @@
     <div class="<%= task.completed? ? 'hidden' : 'inline-flex' %>">
       <% if task.expired? %>
         <div class="<%= badge_style_by_status(task.deadline) %>">
+          <%= tag.span class: "hidden md:flex justify-center items-center" do %>
 
-          <span class='flex justify-center items-center'>
             <svg width="16" height="16" 
               viewBox="0 0 24 24" 
               fill="none" 
@@ -34,14 +35,15 @@
               <path d="M20 11.5v6"/>
               <path d="M20 21.5h.01"/>
             </svg>
-          </span>
+
+          <% end %>
 
           <span class=""><%= task.deadline %></span>
         </div>
       <% else %>
         <div class="<%= badge_style_by_status(task.deadline) %>">
 
-          <span class="flex justify-center items-center">
+          <span class="hidden md:flex justify-center items-center">
             <svg width="16" height="16" 
               viewBox="0 0 24 24" 
               fill="none" 

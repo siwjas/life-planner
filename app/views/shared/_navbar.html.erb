@@ -1,16 +1,17 @@
 <!-- Links de navegação desktop -->
 
-<nav data-controller="mobile-menu" class="bg-white/30 dark:bg-stone-800/30 backdrop-blur-lg 
-     dark:border-stone-700 drop-shadow-md border-b-[1px] rounded-b-xl md:rounded-none border-white mb-12 sticky top-0 z-10">
+<nav data-controller="mobile-menu" class="px-2 bg-white/30 dark:bg-stone-800/30 backdrop-blur-lg 
+     dark:border-stone-700 drop-shadow-md border-b-[1px] rounded-b-xl md:rounded-none 
+     border-white mb-12 sticky top-0 z-10">
 
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="px-2 max-w-7xl sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <div class="flex items-center">
-        <div class="shrink-0 p-1 dark:bg-gray-900 rounded-md">
+        <div class="shrink-0 dark:bg-gray-900 rounded-md">
           <span class="shadow-md overflow-hidden inline"><%= image_tag('planner_logo.png', class: "h-12") %></span> 
         </div>
         <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-4">
+          <div class="flex items-baseline space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <% nav_items.each do | item | %>
               <%= link_to(item[:page], item[:href], class: nav_class(item[:href]), aria: { current: aria(item[:href])}) %>
@@ -59,13 +60,13 @@
         </div>
       <% end %>
 
-      <div class="-mr-2 flex md:hidden">
+      <div class="flex md:hidden">
         <!-- Mobile menu button -->
         <button type="button" 
                 data-action="click->mobile-menu#toggleMenu keydown.esc->mobile-menu#closeMenu 
                 resize@window->mobile-menu#closeMenu" 
                 class="relative inline-flex items-center justify-center rounded-md 
-                bg-stone-500 p-3 hover:bg-stone-600 hover:text-white focus:ring
+                bg-stone-500 p-2 hover:bg-stone-600 hover:text-white focus:ring
                 focus:ring-stone-400 focus:bg-stone-600 focus:outline-none 
                 dark:focus:bg-stone-600 focus:text-gray-100 transition-all" 
                 aria-controls="mobile-menu" aria-expanded="false">

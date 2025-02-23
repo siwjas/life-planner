@@ -25,13 +25,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="min-h-screen bg-[url(bg_light.png)] dark:bg-[url(bg_dark.png)] bg-center bg-no-repeat">
+  <body class="min-h-screen bg-[url(bg_light.png)] dark:bg-[url(bg_dark.png)] bg-cover bg-fixed bg-no-repeat">
 
     <div class="relative w-full h-full text-gray-800 dark:text-gray-100 flex-col items-center">
       <%= render partial: 'shared/navbar' %>
 
       <main class="px-4">
-        <div class="flex-col items-center py-5 px-4 w-full lg:px-12 lg:mx-auto lg:max-w-5xl bg-transparent rounded-2xl">
+        <div class="flex-col items-center py-5 w-full lg:px-12 lg:mx-auto lg:max-w-5xl bg-transparent rounded-2xl">
           <%= render partial: 'shared/flash' if flash.present? %>
           <%= yield %>
         </div>
