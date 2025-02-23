@@ -3,6 +3,7 @@ include ActionView::Helpers::DateHelper
 
 class Task < ApplicationRecord
   validates :name, :description, presence: true
+  belongs_to :user
 
   STATUSES = %w[in_progress completed archived].freeze
 

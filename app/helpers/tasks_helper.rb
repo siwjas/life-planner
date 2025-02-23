@@ -18,10 +18,18 @@ module TasksHelper
   end
 
   def badge_style_by_status(deadline)
-    [ "badge_green",
-      { "badge_defalt":   deadline == "Today" },
-      { "badge_red":      deadline == "Expired" },
-      { "badge_neutral":  deadline == "No deadline" }
+    [
+      { "badge_greent": deadline == "In progress" },
+      { "badge_defalt": deadline == "Today" },
+      { "badge_red": deadline == "Expired" },
+      { "badge_neutral": deadline == "No deadline" }
     ]
+
+    # case deadline
+    # when "Today"        then "badge_default"
+    # when "Expired"      then "badge_red"
+    # when "No deadline"  then "badge_neutral"
+    # else "badge_green"
+    # end
   end
 end

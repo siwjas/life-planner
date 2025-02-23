@@ -17,12 +17,12 @@
       <% end %>
     </div>
     
-    <div class="<%= task.completed? ? 'hidden' : 'inline-flex' %>">
+    <div class="<%= task.completed? ? 'hidden' : 'flex' %>">
       <% if task.expired? %>
-        <div class="<%= badge_style_by_status(task.deadline) %>">
+        <div class="badge_green">
           <%= tag.span class: "hidden md:flex justify-center items-center" do %>
 
-            <svg width="16" height="16" 
+            <svg width="16" height="16"
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor" 

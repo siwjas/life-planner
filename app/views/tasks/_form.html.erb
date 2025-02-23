@@ -1,5 +1,6 @@
 <%= form_with(model: task, class: "contents") do |form| %>
-  
+  <%= form.hidden_field :user_id %>
+
   <% if task.errors.any? %>
     <div id="error_explanation" class="alert bg-red-300 text-red-900 p-3 
          shadow-md rounded-md flex items-start gap-2 my-3" role="alert">
