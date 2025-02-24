@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserIdToTasks < ActiveRecord::Migration[8.0]
   def change
     add_reference :tasks, :user, null: false, foreign_key: true

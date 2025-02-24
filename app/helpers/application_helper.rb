@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def nav_items
     [
       { page: "Home",     href: home_path },
       { page: "Tarefas",  href: tasks_path },
       { page: "Sobre",    href: about_path }
-  ]
+    ]
   end
 
   def nav_class(path)

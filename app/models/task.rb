@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require "dotiw"
 include ActionView::Helpers::DateHelper
 
 class Task < ApplicationRecord
   validates :name, :description, presence: true
-  validates :user_id, presence: true
   belongs_to :user
 
   STATUSES = %w[in_progress completed archived].freeze

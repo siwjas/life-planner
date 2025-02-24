@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TasksHelper
   def icon_by_status(status)
     if status == "in_progress"

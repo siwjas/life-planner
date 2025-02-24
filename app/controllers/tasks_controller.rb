@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   # allow_unauthenticated_access only: %i[ index ]
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[show edit update destroy]
 
   # GET /tasks or /tasks.json
   def index
@@ -10,15 +12,13 @@ class TasksController < ApplicationController
     # @archived_tasks     = tasks.fetch("archived", [])
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @task = Task.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @task = Current.user.tasks.new(task_params)
@@ -46,13 +46,14 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.expect(task: [ :name, :description, :expiration_date, :status ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.expect(task: %i[name description expiration_date status])
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddStatusesToTask < ActiveRecord::Migration[8.0]
   create_enum :task_status, %w[in_progress completed archived]
 

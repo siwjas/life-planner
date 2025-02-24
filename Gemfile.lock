@@ -104,6 +104,8 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dockerfile-rails (1.7.7)
+      rails (>= 3.0.0)
     dotenv (3.1.7)
     dotiw (5.3.3)
       activesupport
@@ -392,6 +394,7 @@ DEPENDENCIES
   brakeman
   capybara
   debug
+  dockerfile-rails (>= 1.7)
   dotiw
   importmap-rails
   jbuilder
