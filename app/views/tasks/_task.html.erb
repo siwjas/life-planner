@@ -1,5 +1,5 @@
 <div id="<%= dom_id task %>" class="bg-white/70 dark:bg-neutral-800/30 backdrop-blur-md
-     border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg px-4 py-3 my-4">
+     border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg px-4 py-3 mb-4">
 
   <div class="py-2 w-full flex justify-between gap-3 items-start border-b-2 border-stone-300 
      dark:border-gray-700 z-0">
@@ -18,48 +18,16 @@
     </div>
     
     <div class="<%= task.completed? ? 'hidden' : 'flex' %>">
-      <% if task.expired? %>
-        <div class="badge_green">
-          <%= tag.span class: "hidden md:flex justify-center items-center" do %>
+      <%= tag.div class: ["relative flex gap-1 items-center ring-1 ring-inset text-xs font-medium me-2 px-2 py-1.5 rounded-md",
+            { "badge_red":     task.expired? },
+            { "badge_default": task.deadline == "Today" },
+            { "badge_green":   task.deadline == "In progress" },
+            { "badge_neutral": task.deadline == "No deadline" } ] do %>
 
-            <svg width="16" height="16"
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              stroke-width="2" 
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              class="lucide lucide-clock-alert animate-pulse">
-              <path d="M12 6v6l4 2"/>
-              <path d="M16 21.16a10 10 0 1 1 5-13.516"/>
-              <path d="M20 11.5v6"/>
-              <path d="M20 21.5h.01"/>
-            </svg>
-
-          <% end %>
-
-          <span class=""><%= task.deadline %></span>
-        </div>
-      <% else %>
-        <div class="<%= badge_style_by_status(task.deadline) %>">
-
-          <span class="hidden md:flex justify-center items-center">
-            <svg width="16" height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              stroke-width="2" 
-              stroke-linecap="round" 
-              stroke-linejoin="round" 
-              class="lucide lucide-clock">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-          </span>
-
-          <%= task.deadline %>
-        </div> 
-      <% end %>
+        <%= lucide_icon "clock", class: "hidden absolute md:block w-4 h-4 #{ 'animate-ping' if task.expired? }" %>
+        <%= lucide_icon "clock", class: "hidden relaive  md:block w-4 h-4" %>
+        <%= task.deadline %>
+      <% end %> 
     </div>
   </div>
 

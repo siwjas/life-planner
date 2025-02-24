@@ -4,35 +4,44 @@
   <div class="flex justify-between items-center">
     <h1 class="font-extrabold text-2xl">Task list</h1>
 
-    <%= link_to new_task_path, class: "relative group flex justify-center items-center" do %>
+    <%= link_to new_task_path, class: "group flex justify-center items-center" do %>
 
       <span aria-hidden="true" class="">
         <%= lucide_icon 'calendar-plus-2', 
             class: 'h-10 w-10 text-stone-700 dark:text-gray-300 group-hover:scale-125
             transition duration-200 ease-in-out' %>
       </span>
-      
-      <span class="absolute rounded-full bg-rose-500 -right-3 -top-2
-            font-light text-xs text-gray-100 py-1 px-2 shadow-md">
-        <%= @in_progress_tasks.size %>
-      </span>
     <% end %>
   </div>
 
-  <hr class="mb-4 border-stone-500 dark:border-stone-600">
+  <hr class="mb-12 border-stone-500 dark:border-stone-600">
 
   <% if @in_progress_tasks.empty? && @completed_tasks.empty? %>
-    <div class="bg-white/30 backdrop-blur-md dark:bg-neutral-800/30 shadow rounded-lg px-8 py-5 my-4">
+    <div class="bg-white/30 backdrop-blur-md dark:bg-neutral-800/30 shadow rounded-lg px-8 py-5 mt-5">
       <p class="text-xl font-extrabold my-4">No Tasks!</p>
       <p class="text-lg font-medium">Create a new task. Or enjoy your new-found free time, yay!</p>
     </div>
   <% else %>
-    <h3 class="text-xl font-extrabold my-4">In Progress</h3>
+    <div class="flex items-center space-x-4 py-1">
+      <%= tag.h3 class: ["inline-block text-xl font-extrabold", { "hidden": @in_progress_tasks.empty? } ] do %>
+        In Progress #
+
+        [ <%= @in_progress_tasks.size %> ]
+      <% end %>
+    </div>
+
     <div id="tasks" class="min-w-full">
       <%= render partial: "tasks/task", collection: @in_progress_tasks, cached: true %>
     </div>
 
-    <h3 class="text-xl font-extrabold my-4 <%= 'hidden' if @completed_tasks.empty? %>">Completed</h3>
+    <div class="flex items-center space-x-4 py-1">
+      <%= tag.h3 class: ["inline-block text-xl font-extrabold", { "hidden": @completed_tasks.empty? } ] do %>
+        Completed #
+
+        [ <%= @completed_tasks.size %> ]
+      <% end %>
+    </div>
+
     <div id="tasks" class="min-w-full">
       <%= render partial: "tasks/task", collection: @completed_tasks, cached: true %>
     </div>
