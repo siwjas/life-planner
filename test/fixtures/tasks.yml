@@ -3,15 +3,18 @@
 one:
   name: MyString
   description: MyString
+  user: :one
   expiration_date: 2025-01-29
 
 two:
   name: MyString
   description: MyString
+  user: :two
   expiration_date: 2025-01-29
 
 three:
   name: MyString
   description: MyString
+  user: :one
   expiration_date: 2025-01-29
   status: completed

@@ -32,6 +32,7 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
+    @task = Current.user.tasks.find(params[:id])
     if @task.update(task_params)
       redirect_to @task, notice: "Task was successfully updated."
     else
