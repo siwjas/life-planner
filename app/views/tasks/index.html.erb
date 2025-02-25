@@ -16,23 +16,23 @@
 
   <hr class="mb-12 border-stone-500 dark:border-stone-600">
 
-  <% if @in_progress_tasks.empty? && @completed_tasks.empty? %>
-    <div class="bg-white/30 ring-1 ring-inset ring-stone-600 ackdrop-blur-md dark:bg-neutral-800/30 shadow rounded-lg px-8 py-5 mt-5">
+    <%= tag.div class: [ "bg-white/70 col-span-2 ring-1 ring-inset ring-stone-600 ackdrop-blur-md 
+        dark:bg-neutral-800/30 shadow rounded-lg px-8 py-5 mt-5",
+        { "hidden": @in_progress_tasks.any? || @completed_tasks.any? } ] do %>
       <p class="text-xl font-extrabold my-4">No Tasks!</p>
       <p class="text-lg font-medium">Create a new task. Or enjoy your new-found free time, yay!</p>
-    </div>
-  <% else %>
+    <% end %>
+
     <div class="flex items-center space-x-4 py-1">
-      <%= tag.h3 class: ["inline-block text-xl font-extrabold", { "hidden": @in_progress_tasks.empty? } ] do %>
-        In Progress #
-
-        [ <%= @in_progress_tasks.size %> ]
-      <% end %>
+    <%= tag.h3 class: ["inline-block text-xl font-extrabold", { "hidden": @in_progress_tasks.empty? } ] do %>
+      In Progress # [ <%= @in_progress_tasks.size %> ]
     </div>
 
-    <div id="tasks" class="min-w-full">
+
+    <%= tag.div id="tasks", class: ["grid grid-cols-1 md:grid-cols-2 gap-4", 
+        { "grid-cols-1": @in_progress_tasks.size == 1 }] do %>
       <%= render partial: "tasks/task", collection: @in_progress_tasks, cached: true %>
-    </div>
+    <% end %>
 
     <div class="flex items-center space-x-4 py-1">
       <%= tag.h3 class: ["inline-block text-xl font-extrabold", { "hidden": @completed_tasks.empty? } ] do %>
@@ -42,8 +42,9 @@
       <% end %>
     </div>
 
-    <div id="tasks" class="min-w-full">
+    <%= tag.div id="tasks", class: ["grid grid-cols-2 gap-4", 
+        { "grid-cols-1": @in_progress_tasks.size == 1 }] do %>
       <%= render partial: "tasks/task", collection: @completed_tasks, cached: true %>
-    </div>
+    <% end %>
   <% end %>
 </div>

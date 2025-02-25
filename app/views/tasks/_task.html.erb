@@ -1,41 +1,51 @@
-<div id="<%= dom_id task %>" class="bg-white/70 dark:bg-neutral-800/30 backdrop-blur-md
-     border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg px-4 py-3 mb-4">
+<div id="<%= dom_id task %>" class="group overflow-hidden hover:bg-stone-800/70 flex gap-2 items-start z-0 
+    bg-white/70 dark:bg-neutral-800/30 backdrop-blur-md border border-1 
+    border-gray-200 dark:border-gray-700 shadow-md rounded-lg px-4 py-3 mb-4">
 
-  <div class="py-2 w-full flex justify-between gap-3 items-start border-b-2 border-stone-300 
-     dark:border-gray-700 z-0">
-    <div class="group flex flex-1 gap-2">
-      <%= tag.span class: ["mb-1 text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-all",
-          { "text-gray-600 line-through": !task.in_progress? }] do %>
+  <%= tag.div "", class: [ "h-[6rem] min-w-[4px] my-auto mx-1 rounded-full bg-sky-400",
+      { "hidden": task.completed? },
+      { "bg-rose-400": task.expired? } ] %>
 
-        <%= lucide_icon icon_by_status(task.status) %>
-      <% end %>
+  <div class="flex-col justify-start gap-2">     
 
-      <%= link_to task, class: ["font-medium text-md md:font-semibold md:text-lg mb-1 
-          text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100",
-          { "text-gray-200 line-through": !task.in_progress? }] do %>
-        <strong> <%= task.name %> </strong>
-      <% end %>
-    </div>
-
-    <%= tag.div class: ["relative flex gap-1 items-center ring-1 ring-inset text-xs font-medium me-2 px-2 py-1.5 rounded-md",
-        { "hidden":        task.completed? },
-        { "badge_red":     task.expired? },
-        { "badge_default": task.deadline == "Today" },
-        { "badge_green":   task.deadline == "In progress" },
-        { "badge_neutral": task.deadline == "No deadline" } ] do %>
+    <%= tag.div class: ["relative inline-flex items-center gap-1 ring-1 ring-inset text-xs font-light px-2 py-1 rounded-md",
+      { "hidden":        task.completed? },
+      { "badge_red":     task.expired? },
+      { "badge_default": task.deadline == "Today" },
+      { "badge_green":   task.deadline == "In progress" },
+      { "badge_neutral": task.deadline == "No deadline" } ] do %>
 
       <%= lucide_icon "clock", class: "hidden absolute md:block w-4 h-4 #{ 'animate-ping' if task.expired? }" %>
       <%= lucide_icon "clock", class: "hidden relaive  md:block w-4 h-4" %>
       <%= task.deadline %>
     <% end %>
-  </div>
 
-  
-    <%= tag.div class: [ "flex my-5 text-stone-800 dark:text-gray-300 gap-3", 
-        { "text-gray-500 line-through": !task.in_progress? }] do %>
-      <%= lucide_icon(detail_icon(task.status)) %>
-      <%= task.description %>
+    <%= tag.div class: ["block font-medium text-lg my-1 text-gray-800 group-hover:text-white dark:text-gray-400",
+        { "text-gray-400 line-through": !task.in_progress? }] do %>
+      <%= task.name %>
     <% end %>
+
+    <%= tag.div class: [ "flex mt-2 text-stone-800 dark:text-gray-300 gap-3 group-hover:text-white", 
+      { "text-gray-400 line-through": !task.in_progress? }] do %>
+      <%= lucide_icon(detail_icon(task.status)) %>
+
+      <p class="truncate group-hover:text-white">
+        <%= task.description %>
+      </p>
+    <% end %>
+    <span class="flex items-center gap-1 mt-2">
+      <%= link_to task, class: [ "peer inline-flex text-xs text-gray-800 
+          hover:text-sky-600 dark:text-gray-400 transition-all durantio-300 group-hover:text-lime-400", 
+          { "text-gray-500": !task.in_progress? }] do %>
+          Details 
+      <% end %>
+      <%= lucide_icon "arrow-up-right", 
+          class: "box-shadow-md w-4 peer-hover:rotate-45 peer-hover:text-lime-500 
+           group-hover:text-green-300 transition-all" %>
+
+    </span>
+  </div>    
 </div>
+
 
 
