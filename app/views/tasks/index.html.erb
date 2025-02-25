@@ -29,21 +29,17 @@
     </div>
 
 
-    <%= tag.div id="tasks", class: ["grid grid-cols-1 md:grid-cols-2 gap-4", 
-        { "grid-cols-1": @in_progress_tasks.size == 1 }] do %>
+    <%= tag.div id="tasks", class: "transition-all #{ @in_progress_tasks.size === 1 ? 'grid grid-cols-1' : 'grid grid-cols-1 md:grid-cols-2 gap-4' }" do %>
       <%= render partial: "tasks/task", collection: @in_progress_tasks, cached: true %>
     <% end %>
 
     <div class="flex items-center space-x-4 py-1">
       <%= tag.h3 class: ["inline-block text-xl font-extrabold", { "hidden": @completed_tasks.empty? } ] do %>
-        Completed #
-
-        [ <%= @completed_tasks.size %> ]
+        Completed # [ <%= @completed_tasks.size %> ]
       <% end %>
     </div>
 
-    <%= tag.div id="tasks", class: ["grid grid-cols-1 md:grid-cols-2 gap-4", 
-        { "grid-cols-1": @completed_tasks.count == 1 }] do %>
+    <%= tag.div id="tasks", class: "transition-all #{ @completed_tasks.size === 1 ? 'grid grid-cols-1' : 'gap-4 columns-sm ' }" do %>
       <%= render partial: "tasks/task", collection: @completed_tasks, cached: true %>
     <% end %>
   <% end %>
