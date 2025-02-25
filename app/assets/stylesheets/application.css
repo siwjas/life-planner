@@ -11,3 +11,17 @@
 body {
   background-color: #353535;
 }
+
+.arrow {
+  position: absolute;
+  bottom: -28px;
+  right: 2px;
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 10px solid hsla(221, 39%, 11%, 0.5);
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  /* border-left: calc(50% - 10); */
+}

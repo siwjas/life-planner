@@ -22,54 +22,66 @@
   <% end %>
 
   <div class="space-y-4">
-    <div class="relative group">
-      <%= form.label :name, class: "block text-sm font-medium text-gray-700 dark:text-gray-200" %>
+    <div class="relative">
+      <%= form.label :name, class: "block text-sm font-medium text-gray-700 dark:text-gray-200" %>  
       <%= form.text_field :name, 
-          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm",
+          class: "peer mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm",
           placeholder: "Enter task name" %>
-      <div class="invisible group-hover:visible absolute z-10 bg-gray-900/70 text-white text-sm rounded-md p-2 -top-8 left-0">
-        Enter a short and descriptive name for your task
+
+      <div class="invisible peer-focus:visible tooltip absolute right-0 -top-5 inline-block w-auto bg-gray-900/50 text-white text-sm rounded-md p-2">
+        <div class="relative">Enter a short and descriptive name for your task
+          <span class="arrow"></span>
+        </div>
       </div>
     </div>
 
-    <div class="relative group">
+    <div class="relative my-4">
       <%= form.label :description, class: "block text-sm font-medium text-gray-700 dark:text-gray-200" %>
       <%= form.text_area :description, 
           rows: 4, 
-          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm",
+          class: "peer mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm",
           placeholder: "Describe your task details" %>
-      <div class="invisible group-hover:visible absolute z-10 bg-gray-900/70 text-white text-sm rounded-md p-2 -top-8 left-0">
-        Provide important details and instructions for task completion
+
+      <div class="invisible peer-focus:visible tooltip absolute right-0 -top-5 inline-block w-auto bg-gray-900/50 text-white text-sm rounded-md p-2">
+        <div class="relative">Provide details and instructions for task completion
+          <span class="arrow"></span>
+        </div>
       </div>
     </div>
 
-    <div class="relative group">
+    <div class="relative my-4">
       <%= form.label :deadline, class: "block text-sm font-medium text-gray-700 dark:text-gray-200" %>
       <%= form.date_field :expiration_date, 
-          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm" %>
-      <div class="invisible group-hover:visible absolute z-10 bg-gray-900/70 text-white text-sm rounded-md p-2 -top-8 left-0">
-        Set a deadline for task completion
+          class: "peer mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm" %>
+
+      <div class="invisible peer-focus:visible tooltip absolute right-0 -top-5 inline-block w-auto bg-gray-900/50 text-white text-sm rounded-md p-2">
+        <div class="relative">Set a deadline for task completion
+          <span class="arrow"></span>
+        </div>
       </div>
     </div>
 
-    <div class="relative group">
+    <div class="relative my-4">
       <%= form.label :status, class: "block text-sm font-medium text-gray-700 dark:text-gray-200" %>
       <%= form.select :status, Task::STATUSES,
           {}, 
-          class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm" %>
-      <div class="invisible group-hover:visible absolute z-10 bg-gray-900/70 text-white text-sm rounded-md p-2 -top-8 left-0">
-        Select the current status of your task
+          class: "peer mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white sm:text-sm" %>
+
+      <div class="invisible peer-focus:visible tooltip absolute right-0 -top-5 inline-block w-auto bg-gray-900/50 text-white text-sm rounded-md p-2">
+        <div class="relative">Select the current status of your task
+          <span class="arrow"></span>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="sm:flex sm:justify-between sm:items-center gap-5">
-    <div class="my-5 w-full">
-      <%= form.submit class: "w-full text-center rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-blue-500 cursor-pointer" %>
+    
+    <div class="sm:flex sm:justify-between sm:items-center gap-5">
+      <div class="my-5 w-full">
+        <%= form.submit class: "w-full text-center rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium hover:bg-blue-500 cursor-pointer" %>
+      </div>
+      
+      <div class="w-full">
+        <%= link_to "Cancel", tasks_path, class: "text-center rounded-lg py-3 px-5 bg-rose-600 text-white block font-medium hover:bg-rose-500" %>
+      </div>
     </div>
-
-    <div class="w-full">
-      <%= link_to "Cancel", tasks_path, class: "text-center rounded-lg py-3 px-5 bg-rose-600 text-white block font-medium hover:bg-rose-500" %>
-    </div>
-  </div>
+  </div>    
 <% end %>

@@ -1,3 +1,4 @@
+<% content_for :title, "Life Planner :: Show a Task" %>
 
 <div class="w-full bg-gray-100/30 dark:bg-neutral-800/30 backdrop-blur-lg
      border border-1 border-gray-200 dark:border-gray-700 shadow-md rounded-lg my-2 px-4">
@@ -36,7 +37,7 @@
     <% end %>
 
     <p class="my-4 font-medium text-lg text-gray-600 dark:text-gray-300">
-      <%= @task.description.html_safe %>
+      <%= h(@task.description) %>
     </p>
 
     <div class="hidden md:flex md:gap-2 py-4">

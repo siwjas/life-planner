@@ -4,44 +4,38 @@
   <div class="py-2 w-full flex justify-between gap-3 items-start border-b-2 border-stone-300 
      dark:border-gray-700 z-0">
     <div class="group flex flex-1 gap-2">
-      <%= tag.span class: ["mb-1 dark:text-gray-500 group-hover:text-stone-700 dark:group-hover:text-gray-400 transition-all",
-          { "text-gray-600 line-through": task.completed? }] do %>
+      <%= tag.span class: ["mb-1 text-gray-600 dark:text-gray-300 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-all",
+          { "text-gray-600 line-through": !task.in_progress? }] do %>
 
         <%= lucide_icon icon_by_status(task.status) %>
       <% end %>
 
       <%= link_to task, class: ["font-medium text-md md:font-semibold md:text-lg mb-1 
-          text-stone-700 dark:text-gray-400 hover:text-stone-800 dark:hover:text-gray-300",
-          { "line-through": task.completed? }] do %>
+          text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100",
+          { "text-gray-200 line-through": !task.in_progress? }] do %>
         <strong> <%= task.name %> </strong>
       <% end %>
     </div>
-    
-    <div class="<%= task.completed? ? 'hidden' : 'flex' %>">
-      <%= tag.div class: ["relative flex gap-1 items-center ring-1 ring-inset text-xs font-medium me-2 px-2 py-1.5 rounded-md",
-            { "badge_red":     task.expired? },
-            { "badge_default": task.deadline == "Today" },
-            { "badge_green":   task.deadline == "In progress" },
-            { "badge_neutral": task.deadline == "No deadline" } ] do %>
 
-        <%= lucide_icon "clock", class: "hidden absolute md:block w-4 h-4 #{ 'animate-ping' if task.expired? }" %>
-        <%= lucide_icon "clock", class: "hidden relaive  md:block w-4 h-4" %>
-        <%= task.deadline %>
-      <% end %> 
-    </div>
+    <%= tag.div class: ["relative flex gap-1 items-center ring-1 ring-inset text-xs font-medium me-2 px-2 py-1.5 rounded-md",
+        { "hidden":        task.completed? },
+        { "badge_red":     task.expired? },
+        { "badge_default": task.deadline == "Today" },
+        { "badge_green":   task.deadline == "In progress" },
+        { "badge_neutral": task.deadline == "No deadline" } ] do %>
+
+      <%= lucide_icon "clock", class: "hidden absolute md:block w-4 h-4 #{ 'animate-ping' if task.expired? }" %>
+      <%= lucide_icon "clock", class: "hidden relaive  md:block w-4 h-4" %>
+      <%= task.deadline %>
+    <% end %>
   </div>
 
-  <div class="flex my-5 text-stone-800 dark:text-gray-300 gap-3">
-    <div class="">
-      <span>
-        <%= lucide_icon(detail_icon(task.status)) %>
-      </span>
-    </div>
-
-    <div class="flex-1 <%='line-through' if !task.in_progress? %>">
-      <%= task.description.html_safe %>
-    </div>
-  </div>
+  
+    <%= tag.div class: [ "flex my-5 text-stone-800 dark:text-gray-300 gap-3", 
+        { "text-gray-500 line-through": !task.in_progress? }] do %>
+      <%= lucide_icon(detail_icon(task.status)) %>
+      <%= task.description %>
+    <% end %>
 </div>
 
 
